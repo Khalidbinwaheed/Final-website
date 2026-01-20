@@ -24,13 +24,7 @@ const teamMembers = [
     bio: 'Digital marketing specialist driving growth through SEO and content strategy.',
     social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
   },
-  {
-    name: 'Asad Ullah (CTO)',
-    role: 'Web Developer',
-    image: asad,
-    bio: 'Java Backend Developer with strong knowledge of Java, Spring, Spring Boot, Servlets, REST APIs, and MySQL',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
-  },
+ 
   {
     name: 'Khalid Bin Waheed',
     role: 'App Developer and Certified Ethical Hacker',
@@ -44,6 +38,13 @@ const teamMembers = [
     role: 'Graphic Designer',
     image: ammar,
     bio: 'Visual storytelling through logos, posters, flyers capturing your brands essence.',
+    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+  },
+   {
+    name: 'Asad Ullah',
+    role: 'Web Developer',
+    image: asad,
+    bio: 'Java Backend Developer with strong knowledge of Java, Spring, Spring Boot, Servlets, REST APIs, and MySQL',
     social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
   },
   {

@@ -3,7 +3,24 @@ import { motion } from 'framer-motion';
 import { Briefcase, Clock, MapPin, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const openings = [
+const internships = [
+  {
+    title: 'Frontend Developer Intern',
+    type: 'Internship',
+    location: 'Remote',
+    experience: '0-1 years',
+    description: 'Assist in developing user-facing features using React and Tailwind CSS.',
+  },
+   {
+    title: 'UI/UX Design Intern',
+    type: 'Internship',
+    location: 'Remote',
+    experience: '0-1 years',
+    description: 'Collaborate with designers to create intuitive and visually appealing interfaces.',
+  },
+];
+
+const jobs = [
    {
     title: 'Flutter Developer',
     type: 'Contract',
@@ -18,36 +35,6 @@ const openings = [
     experience: '1+ years',
     description: 'Build and maintain web applications using MongoDB, Express, React, and Node.js.',
   },
-  /*{
-    title: 'Senior React Developer',
-    type: 'Full-time',
-    location: 'Remote',
-    experience: '1+ years',
-    description: 'Lead frontend development for enterprise-scale applications using React and TypeScript.',
-  },
-  {
-    title: 'Backend Engineer (Node.js)',
-    type: 'Full-time',
-    location: 'Remote',
-    experience: '1+ years',
-    description: 'Design and implement scalable APIs and microservices architecture.',
-  },
-  {
-    title: 'UI/UX Designer',
-    type: 'Full-time',
-    location: 'Remote',
-    experience: '1+ years',
-    description: 'Create intuitive user interfaces and exceptional user experiences.',
-  },
-  {
-    title: 'DevOps Engineer',
-    type: 'Contract',
-    location: 'Remote',
-    experience: '1+ years',
-    description: 'Manage CI/CD pipelines and cloud infrastructure on AWS/Azure.',
-  },*/
- 
-
 ];
 
 const Career = () => {
@@ -94,9 +81,68 @@ const Career = () => {
           </p>
         </motion.div>
 
-        {/* Job Listings */}
+        {/* Internships Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <h3 className="text-2xl font-display font-semibold mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            Internships
+          </h3>
+          <div className="space-y-4">
+            {internships.map((job, index) => (
+              <motion.div
+                key={job.title}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="glass-card p-6 group hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-display font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {job.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-1 mb-3">
+                      {job.description}
+                    </p>
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <Briefcase className="w-4 h-4 text-primary" />
+                        {job.type}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4 text-primary" />
+                        {job.location}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4 text-primary" />
+                        {job.experience}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Button
+                    variant="glassOutline"
+                    className="w-full sm:w-auto shrink-0 mt-4 lg:mt-0 group/btn"
+                    onClick={() => handleApply(job)}
+                    aria-label={`Apply for ${job.title}`}
+                  >
+                    Apply Now
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Jobs Section */}
         <div className="max-w-4xl mx-auto space-y-4">
-          {openings.map((job, index) => (
+           <h3 className="text-2xl font-display font-semibold mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            Full-Time Jobs
+          </h3>
+          {jobs.map((job, index) => (
             <motion.div
               key={job.title}
               initial={{ opacity: 0, x: -30 }}
