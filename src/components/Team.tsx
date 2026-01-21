@@ -15,14 +15,14 @@ const teamMembers = [
     role: 'Business and Data Analyst',
     image: bilal,
     bio: 'Data driven Junior Business Analyst with real world impact',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'https://www.linkedin.com/in/bilal-ahmad-171b002a4?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUcLigqhKSN6LqLQfpP5KGA%3D%3D', twitter: '#', github: 'https://github.com/bilalahmad88', website: '#' },
   },
   {
     name: 'Abdullah Burhan (COO)',
     role: 'Digital Marketing',
     image: abdullahBurhan,
     bio: 'Digital marketing specialist driving growth through SEO and content strategy.',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'https://www.linkedin.com/in/abdullah-burhan-5a1798247?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdXOOkzy7Swma1PLdZO6xWg%3D%3D', twitter: '#', github: '#', website: '#' },
   },
  
   {
@@ -38,7 +38,7 @@ const teamMembers = [
     role: 'Graphic Designer',
     image: ammar,
     bio: 'Visual storytelling through logos, posters, flyers capturing your brands essence.',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'www.linkedin.com/in/ammar-farooq-94015421a', twitter: '#', github: '#', website: '#' },
   },
    {
     name: 'Asad Ullah',
@@ -52,21 +52,21 @@ const teamMembers = [
     role: 'Web Developer',
     image: amna,
     bio: 'Web development lead specializing in React and Node.js.',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'https://www.linkedin.com/in/amna-noor-1476762a4?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BzKo2Wd%2BuQ9Gbu2TA1o3kHg%3D%3D', twitter: '#', github: 'https://github.com/Amna-Noor12', website: '#' },
   },
   {
     name: 'Alishba Hayat',
     role: 'Video Editor',
     image: alishba,
     bio: 'Video editing expert with a passion for storytelling.',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'https://www.linkedin.com/in/alishba-hayat-06aa7b389?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', twitter: '#', github: '#', website: '#' },
   },
   {
     name: 'Umar Tanveer Khan',
     role: 'Junior Data Analyst',
     image: tanveer,
     bio: 'Junior Data Analyst with real world impact',
-    social: { linkedin: '#', twitter: '#', github: '#', website: '#' },
+    social: { linkedin: 'https://www.linkedin.com/in/umar-tanveer-khan-4b775b27b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BXNo1BlmOQPunxgWbWcgeTw%3D%3D', twitter: '#', github: '#', website: '#' },
   },
   
 ];

@@ -31,7 +31,7 @@ const About = () => {
               <span className="gradient-text">Digital Reality</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              Code Craft Pakistan is a leading software development company dedicated to 
+              Code Craft It Solution is a leading software development company dedicated to 
               delivering innovative digital solutions. With a team of passionate developers, 
               designers, and strategists, we help businesses thrive in the digital age.
             </p>

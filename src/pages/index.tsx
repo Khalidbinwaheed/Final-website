@@ -1,7 +1,8 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import SEO from '@/components/SEO';
 
 // Lazy load below-the-fold components
 const StatsCounter = lazy(() => import('@/components/StatsCounter'));
@@ -14,22 +15,17 @@ const Team = lazy(() => import('@/components/Team'));
 const Contact = lazy(() => import('@/components/contact'));
 
 // ...
+// ...
 
-          <Team />
-          {/* <Career /> */}
-          <Clients />
 const FAQ = lazy(() => import('@/components/FAQ'));
 const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   useSmoothScroll();
 
-  useEffect(() => {
-    document.title = 'Code Craft Pakistan';
-  }, []);
-
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO />
       <Header />
       <main>
         <Hero />

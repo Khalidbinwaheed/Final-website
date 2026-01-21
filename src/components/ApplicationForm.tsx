@@ -6,13 +6,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Loader2, Upload } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 interface ApplicationFormProps {
     defaultRole?: string;
     className?: string;
+    availableRoles?: string[];
 }
 
-const ApplicationForm: React.FC<ApplicationFormProps> = ({ defaultRole, className = "" }) => {
+const ApplicationForm: React.FC<ApplicationFormProps> = ({ defaultRole, className = "", availableRoles = [] }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState("No file chosen");
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -33,36 +35,70 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ defaultRole, classNam
   }, [defaultRole]);
 
 
-  // Determine API base URL: local for dev, production URL for live
-  // Note: For Railway, you will need to replace this with your actual deployed backend URL
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+        toast.error("EmailJS configuration is missing. Please check your .env file.");
+        setIsSubmitting(false);
+        return;
+    }
+
     try {
-        const formDataPayload = new FormData();
-        formDataPayload.append('name', formData.name);
-        formDataPayload.append('contact', formData.contact);
-        formDataPayload.append('countryCode', formData.countryCode);
-        formDataPayload.append('email', formData.email);
-        formDataPayload.append('role', formData.role);
-        formDataPayload.append('experience', formData.experience);
-        formDataPayload.append('details', formData.details);
-        
+        const templateParams: Record<string, unknown> = {
+            from_name: formData.name,
+            from_email: formData.email,
+            contact_number: `${formData.countryCode} ${formData.contact}`,
+            role: formData.role,
+            experience: formData.experience,
+            message: formData.details,
+        };
+
         if (fileInputRef.current?.files?.[0]) {
-            formDataPayload.append('resume', fileInputRef.current.files[0]);
+            const file = fileInputRef.current.files[0];
+            if (file.size > 50 * 1024) { // Warning for 50KB limit on free tier
+                 toast.warning("File is large. Attachments may fail on EmailJS free tier.");
+            }
+            
+            const base64File = await new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result as string);
+                reader.onerror = error => reject(error);
+            });
+            
+            // Assuming your EmailJS template has a variable for the file content
+            templateParams.resume = base64File; 
         }
 
-        const res = await fetch(`${API_URL}/api/send-email`, {
-            method: 'POST',
-            body: formDataPayload, // Content-Type is set automatically for FormData
+        // Send Main Application Email
+        await emailjs.send(serviceId, templateId, templateParams, {
+            publicKey: publicKey,
         });
 
-        if (!res.ok) {
-            const errorData = await res.json();
-            throw new Error(errorData.error || 'Failed to submit application');
+        // Send Auto-Reply (if configured)
+        const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
+        if (autoReplyTemplateId) {
+            try {
+                const autoReplyParams = {
+                    to_name: formData.name,
+                    to_email: formData.email,
+                    role: formData.role,
+                    contact_number: `${formData.countryCode} ${formData.contact}`,
+                    message: "Thank you for your application. We have received your details and will get back to you soon.",
+                };
+                await emailjs.send(serviceId, autoReplyTemplateId, autoReplyParams, {
+                    publicKey: publicKey,
+                });
+            } catch (autoReplyError) {
+                console.error("Auto-reply failed:", autoReplyError);
+                // We don't block the success flow if auto-reply fails
+            }
         }
 
         toast.success("Application submitted successfully! Please check your email for confirmation.");
@@ -72,7 +108,19 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ defaultRole, classNam
 
     } catch (err: unknown) {
         console.error('Send error:', err);
-        const message = err instanceof Error ? err.message : String(err);
+        let message = 'Unknown error occurred';
+        
+        if (err instanceof Error) {
+            message = err.message;
+        } else if (typeof err === 'object' && err !== null && 'text' in err) {
+            // EmailJS often returns { status: 400, text: "error details" }
+            message = (err as { text: string }).text;
+        } else if (typeof err === 'string') {
+            message = err;
+        } else {
+             message = JSON.stringify(err);
+        }
+
         toast.error(`Failed to submit application: ${message}`);
     } finally {
         setIsSubmitting(false);
@@ -166,15 +214,28 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({ defaultRole, classNam
 
             <div className="space-y-2">
                 <Label htmlFor="role" className="text-foreground/80">Apply For Which Post?</Label>
-                <Input 
-                    id="role" 
-                    placeholder="e.g. Flutter Developer" 
-                    className="bg-muted/50 border-white/10 focus:border-primary/50"
-                    value={formData.role}
-                    onChange={handleChange}
-                    // If defaultRole is provided, we might want to make this read-only or just pre-filled?
-                    // Let's keep it editable but pre-filled.
-                />
+                {availableRoles.length > 0 ? (
+                    <Select value={formData.role} onValueChange={handleSelectChange}>
+                        <SelectTrigger className="bg-muted/50 border-white/10 focus:border-primary/50">
+                            <SelectValue placeholder="Select a position" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {availableRoles.map((role) => (
+                                <SelectItem key={role} value={role}>
+                                    {role}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                ) : (
+                    <Input 
+                        id="role" 
+                        placeholder="e.g. Flutter Developer" 
+                        className="bg-muted/50 border-white/10 focus:border-primary/50"
+                        value={formData.role}
+                        onChange={handleChange}
+                    />
+                )}
             </div>
 
             <div className="space-y-2">

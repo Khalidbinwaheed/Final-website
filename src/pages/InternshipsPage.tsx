@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ApplicationForm from '@/components/ApplicationForm';
 import { useRef, useState } from 'react';
+import SEO from '@/components/SEO';
 
 const internships = [
  
@@ -21,6 +22,10 @@ const InternshipsPage = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden flex flex-col">
+      <SEO 
+        title="Internship Programs" 
+        description="Kickstart your career with Code Craft It Solution's internship programs for fresh talent."
+      />
       <Header />
       <main className="flex-grow pt-24">
         <section className="relative py-12 lg:py-24 overflow-hidden">

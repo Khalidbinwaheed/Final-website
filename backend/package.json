@@ -1,7 +1,7 @@
 {
   "name": "codecraft-backend",
   "version": "1.0.0",
-  "description": "Backend service for Code Craft Pakistan forms",
+  "description": "Backend service for Code Craft It Solution forms",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

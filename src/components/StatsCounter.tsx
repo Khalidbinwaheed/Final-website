@@ -2,11 +2,16 @@ import { motion } from 'framer-motion';
 import { useCountUp } from '@/hooks/useCountUp';
 import { Code, Users, Trophy, Clock } from 'lucide-react';
 
+const projectsCompleted = 150;
+const happyClients = 140; // Increased to maintain high satisfaction ratio
+const satisfactionRatio = Math.round((happyClients / projectsCompleted) * 100);
+const yearsExperience = 1;
+
 const stats = [
-  { icon: Code, value: 150, suffix: '+', label: 'Projects Completed' },
-  { icon: Users, value: 50, suffix: '+', label: 'Happy Clients' },
-  { icon: Trophy, value: 93, suffix: '%', label: 'Client Satisfaction' },
-  { icon: Clock, value: 1, suffix: '+', label: 'Years Experience' },
+  { icon: Code, value: projectsCompleted, suffix: '+', label: 'Projects Completed' },
+  { icon: Users, value: happyClients, suffix: '+', label: 'Happy Clients' },
+  { icon: Trophy, value: satisfactionRatio, suffix: '%', label: 'Client Satisfaction' },
+  { icon: Clock, value: yearsExperience, suffix: '+', label: 'Years Experience' },
 ];
 
 const StatCard = ({ icon: Icon, value, suffix, label, index }: { 

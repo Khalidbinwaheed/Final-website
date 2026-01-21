@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ApplicationForm from '@/components/ApplicationForm';
 import { useRef, useState } from 'react';
+import SEO from '@/components/SEO';
 
 const courses = [
   // Empty as per user request/pattern
@@ -21,6 +22,10 @@ const CoursesPage = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden flex flex-col">
+      <SEO 
+        title="Professional Courses" 
+        description="Enhance your skills with expert-led courses and certifications from Code Craft It Solution."
+      />
       <Header />
       <main className="flex-grow pt-24">
         <section className="relative py-12 lg:py-24 overflow-hidden">

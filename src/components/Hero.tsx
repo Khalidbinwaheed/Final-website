@@ -34,7 +34,7 @@ const Hero = () => {
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-sm text-muted-foreground">
-              Bring Your Business Online with code Craft Pakistan
+              Bring Your Business Online with Code Craft It Solution
             </span>
           </motion.div>
 
@@ -58,7 +58,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance"
           >
-            Code Craft Pakistan delivers world-class software solutions that transform 
+            Code Craft It Solution delivers world-class software solutions that transform 
             businesses. From concept to deployment, we craft digital experiences that inspire.
           </motion.p>
 

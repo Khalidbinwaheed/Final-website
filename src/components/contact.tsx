@@ -26,11 +26,11 @@ const Contact: React.FC = () => {
 
   // Prefer Vite env vars; fall back to defaults only for local/dev convenience
   const EMAILJS_SERVICE_ID =
-    import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_ul211pn';
+    import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_3piht5w';
   const EMAILJS_TEMPLATE_ID =
-    import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_8p37vwx';
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_0hyiyyd';
   const EMAILJS_PUBLIC_KEY =
-    import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'ENc8vDenN56kJFs3S';
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '7KO3DTJgcnU9Mx4SH';
 
   const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 

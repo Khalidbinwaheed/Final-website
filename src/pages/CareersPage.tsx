@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ApplicationForm from '@/components/ApplicationForm';
+import SEO from '@/components/SEO';
 
 const CareersPage = () => {
   useSmoothScroll();
@@ -18,6 +19,10 @@ const CareersPage = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden flex flex-col">
+      <SEO 
+        title="Careers" 
+        description="Join the Code Craft It Solution team. Explore job openings, internships, and professional courses."
+      />
       <Header />
       <main className="flex-grow pt-24">
         <section className="relative py-12 lg:py-24 overflow-hidden">

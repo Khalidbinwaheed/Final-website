@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ApplicationForm from '@/components/ApplicationForm';
 import { useRef, useState } from 'react';
+import SEO from '@/components/SEO';
 
 const jobs = [
    
@@ -21,6 +22,10 @@ const JobsPage = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden flex flex-col">
+      <SEO 
+        title="Jobs & Careers" 
+        description="Join the Code Craft It Solution team. Explore full-time job opportunities and open positions."
+      />
       <Header />
       <main className="flex-grow pt-24">
         <section className="relative py-12 lg:py-24 overflow-hidden">
@@ -100,7 +105,7 @@ const JobsPage = () => {
                         <h3 className="text-2xl font-display font-bold">Ready to Apply?</h3>
                         <p className="text-muted-foreground mt-2">Submit your application below.</p>
                     </div>
-                    <ApplicationForm defaultRole={selectedRole} />
+                    <ApplicationForm defaultRole={selectedRole} availableRoles={jobs.map(j => j.title)} />
                 </div>
             </div>
         </section>

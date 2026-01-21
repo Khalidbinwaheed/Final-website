@@ -4,7 +4,7 @@ type ClientItem = { src?: string; name: string };
 
 const Clients = () => {
   useEffect(() => {
-    document.title = 'Code Craft Pakistan';
+    document.title = 'Code Craft It Solution';
   }, []);
 
   // Load client images from `src/Assets` (Vite). Include nested folders and use eager glob.
